@@ -1,4 +1,4 @@
-🌦️ bright.weather
+# 🌦️ bright.weather
 
 A clean, modern weather application built with React and TypeScript, focused on clarity, reliability, and strong architectural boundaries.
 
@@ -8,7 +8,8 @@ This project was built as a technical exercise with an emphasis on:
 - Readable, maintainable UI
 - Minimal but meaningful testing
 
-✨ Features
+
+# ✨ Features
 
 - Search weather by city name
 - Automatic geolocation on first load (with graceful fallback)
@@ -17,7 +18,8 @@ This project was built as a technical exercise with an emphasis on:
 - Clear separation between UI, services, and API clients
 - Lightweight test coverage for core logic
 
-🧱 Tech Stack
+
+# 🧱 Tech Stack
 
 - React
 - TypeScript
@@ -26,7 +28,8 @@ This project was built as a technical exercise with an emphasis on:
 - Axios
 - Vitest (unit testing)
 
-🧭 Architecture Overview
+
+# 🧭 Architecture Overview
 
 The app is structured to keep responsibilities clear and isolated.
 
@@ -47,7 +50,8 @@ Convert external API responses into stable, app-level domain models.
 
 This approach keeps the UI decoupled from external APIs and makes the core logic easy to test.
 
-🌍 Weather Data Source
+
+# 🌍 Weather Data Source
 
 Weather data is provided by OpenWeather:
 - Geocoding API (city → coordinates)
@@ -55,11 +59,12 @@ Weather data is provided by OpenWeather:
 
 Background images are mapped locally based on high-level weather conditions (e.g. clear, rain, snow) for reliability and performance.
 
-⚙️ Environment Variables
+
+# ⚙️ Environment Variables
 
 This project requires environment variables to run.
 
-Create a `.env` file in the project root (same level as `package.json`) with the following:
+Create a .env file in the project root (same level as package.json) with the following:
 
 VITE_OPEN_WEATHER_API_KEY=your_openweather_api_key_here  
 VITE_OPEN_WEATHER_BASE_URL=https://api.openweathermap.org/data/2.5  
@@ -67,23 +72,23 @@ VITE_OPEN_GEOCODE_BASE_URL=https://api.openweathermap.org/geo/1.0
 VITE_OPEN_WEATHER_ICON_URL=https://openweathermap.org/img/wn/{iconKey}@2x.png  
 
 Important notes:
-- All variables must start with `VITE_` (Vite requirement)
+- All variables must start with VITE_ (Vite requirement)
 - Do not wrap values in quotes
 - Restart the dev server after adding or changing environment variables
 
-▶️ Running the App
+
+# ▶️ Running the App
 
 Install dependencies:
-
 npm install
 
 Start the development server:
-
 npm run dev
 
 The app will be available at the local Vite URL (usually http://localhost:5173).
 
-🧪 Running Tests
+
+# 🧪 Running Tests
 
 This project includes a small but focused test suite covering:
 - The OpenWeather API client
@@ -91,18 +96,16 @@ This project includes a small but focused test suite covering:
 - Key mapping utilities
 
 Run tests in watch mode:
-
 npm run test
 
 Run tests once:
-
 npm run test:run
 
 Run tests with coverage:
-
 npm run test:coverage
 
-🧠 Design Decisions
+
+# 🧠 Design Decisions
 
 Local background images instead of remote image APIs  
 Ensures fast, predictable rendering with no additional failure modes.
@@ -116,20 +119,23 @@ Focuses on business logic rather than snapshot or UI tests for this exercise.
 No over-engineering  
 The implementation is intentionally simple and readable within the scope of a timed task.
 
-📌 Notes
+
+# 📌 Notes
 
 - Recent locations are stored in memory (last 4 searches)
 - This can easily be extended to localStorage if persistence is required
 - Error handling is intentionally user-friendly rather than verbose
 
-✅ Summary
+
+# ✅ Summary
 
 The goal of this project was not just to “make it work”, but to demonstrate:
 - Clean structure
 - Sensible defaults
 - An approach that would scale naturally in a real-world codebase
 
-Thanks for taking the time to review it.
+Thanks for taking the time to review it. Below is the react + typescript default template just in case there are issues with above instructions
+
 
 
 # React + TypeScript + Vite Information
