@@ -12,6 +12,8 @@ export default function App() {
     recentLocations,
     handleSetInput,
     searchCity,
+    searchMode,
+    setSearchMode
   } = useWeatherController(weatherService, "London");
 
   return (
@@ -22,6 +24,8 @@ export default function App() {
       locations={recentLocations}
       handleSetInput={handleSetInput}
       searchCity={searchCity}
+      searchMode={searchMode}
+      setSearchMode={setSearchMode}
     />
   );
 }

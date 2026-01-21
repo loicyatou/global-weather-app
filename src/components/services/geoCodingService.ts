@@ -27,10 +27,10 @@ export class GeoCodingService {
       });
   }
 
-  async getLocationCoordinates(city: string): Promise<LocationCoordinates[]> {
+  async getLocationCoordinates(city: string, countryCode?: string): Promise<LocationCoordinates[]> {
     const raw = await this.client.get<OpenWeatherGeocodingItem[]>("/direct", {
       params: {
-        q: city,
+        q: countryCode ? `${city},${countryCode}` : city,
         limit: 5,
       },
     });

@@ -27,8 +27,8 @@ export function WeatherDetails({ weatherData }: WeatherDetailsProps) {
 
       <div className="space-y-4 text-sm">
         <DetailRow label="Humidity" value={`${weatherData.humidity}%`} />
-        <DetailRow label="Min Temp" value={`${weatherData.minTemp}°`} />
-        <DetailRow label="Max Temp" value={`${weatherData.maxTemp}°`} />
+        <DetailRow label="Min Temp" value={`${weatherData.minTemp}°c`} />
+        <DetailRow label="Max Temp" value={`${weatherData.maxTemp}°c`} />
         <DetailRow label="Wind" value={`${weatherData.windSpeedMph} mph`} />
         <DetailRow
           label="Rain"

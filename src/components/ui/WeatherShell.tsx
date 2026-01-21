@@ -4,6 +4,8 @@ import { weatherBackgroundMap } from "@/components/utils/backgrounds";
 import { mapConditionToBackgroundKey } from "@/components/mappers/mapConditionToBackground";
 import type { WeatherData } from "@/components/types/weatherDomain";
 
+type SearchMode = "UK" | "GLOBAL";
+
 type WeatherShellProps = {
   weatherData: WeatherData | null;
   isLoading: boolean;
@@ -11,6 +13,8 @@ type WeatherShellProps = {
   locations: string[];
   handleSetInput: (newInput: string) => void;
   searchCity: (cityRaw: string) => Promise<void> | void;
+  searchMode: SearchMode;
+  setSearchMode: React.Dispatch<React.SetStateAction<SearchMode>>;
 };
 
 export function WeatherShell({
@@ -20,6 +24,8 @@ export function WeatherShell({
   locations,
   handleSetInput,
   searchCity,
+  searchMode,
+  setSearchMode,
 }: WeatherShellProps) {
   const backgroundKey = mapConditionToBackgroundKey(weatherData?.condition);
   const bgImage = weatherBackgroundMap[backgroundKey];
@@ -48,6 +54,8 @@ export function WeatherShell({
           isLoading={isLoading}
           error={error}
           locations={locations}
+          searchMode={searchMode}
+          setSearchMode={setSearchMode}
         />
       </div>
     </div>

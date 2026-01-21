@@ -1,17 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { OpenWeatherClient } from "../components/services/openWeatherClient";
 
 describe("OpenWeatherClient", () => {
   let mock: AxiosMockAdapter;
 
-  beforeEach(() => {
-    mock = new AxiosMockAdapter(axios);
-  });
-
   afterEach(() => {
-    mock.restore();
+    mock?.restore();
   });
 
   it("injects defaultParams into every request", async () => {
@@ -20,7 +15,21 @@ describe("OpenWeatherClient", () => {
       defaultParams: { appid: "KEY123" },
     });
 
-    mock.onGet("https://example.test/weather").reply((config) => {
+    const axiosInstance =
+      (client as any).client ??
+      (client as any).axios ??
+      (client as any).http ??
+      (client as any).instance;
+
+    if (!axiosInstance) {
+      throw new Error(
+        "Could not find axios instance on OpenWeatherClient. Expose it or update test accessor.",
+      );
+    }
+
+    mock = new AxiosMockAdapter(axiosInstance);
+
+    mock.onGet("/weather").reply((config) => {
       expect(config.params).toMatchObject({ appid: "KEY123", q: "London" });
       return [200, { ok: true }];
     });
@@ -38,7 +47,21 @@ describe("OpenWeatherClient", () => {
       defaultParams: { appid: "DEFAULT" },
     });
 
-    mock.onGet("https://example.test/weather").reply((config) => {
+    const axiosInstance =
+      (client as any).client ??
+      (client as any).axios ??
+      (client as any).http ??
+      (client as any).instance;
+
+    if (!axiosInstance) {
+      throw new Error(
+        "Could not find axios instance on OpenWeatherClient. Expose it or update test accessor.",
+      );
+    }
+
+    mock = new AxiosMockAdapter(axiosInstance);
+
+    mock.onGet("/weather").reply((config) => {
       expect(config.params).toMatchObject({ appid: "OVERRIDE" });
       return [200, { ok: true }];
     });

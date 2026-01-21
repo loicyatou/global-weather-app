@@ -14,21 +14,23 @@ describe("WeatherService", () => {
 
     const svc = new WeatherService(fakeClient as any, fakeGeo as any);
 
-    const data = await svc.getCurrentWeather("Nowhere");
+    const data = await svc.getCurrentWeather("Nowhere"); // no countryCode
 
-    expect(fakeGeo.getLocationCoordinates).toHaveBeenCalledWith("Nowhere");
+    expect(fakeGeo.getLocationCoordinates).toHaveBeenCalledWith("Nowhere", undefined);
     expect(fakeClient.get).not.toHaveBeenCalled();
+
     expect(data).toBeTruthy();
     expect((data as WeatherData).cityName).toBe("Nowhere");
   });
 
   it("calls /weather with lat/lon from best geocode result", async () => {
     const fakeGeo = {
-      getLocationCoordinates: vi.fn().mockResolvedValue([{ lat: 51.5, lon: -0.12 }]),
+      getLocationCoordinates: vi
+        .fn()
+        .mockResolvedValue([{ lat: 51.5, lon: -0.12 }]),
     };
 
     const fakeRaw = {
-      // shape that mapToWeatherData expects
       name: "London",
       weather: [{ main: "Rain", description: "light rain", icon: "10d" }],
       main: { temp: 10, feels_like: 8, humidity: 80, temp_min: 7, temp_max: 11 },
@@ -43,6 +45,8 @@ describe("WeatherService", () => {
     const svc = new WeatherService(fakeClient as any, fakeGeo as any);
 
     await svc.getCurrentWeather("London");
+
+    expect(fakeGeo.getLocationCoordinates).toHaveBeenCalledWith("London", undefined);
 
     expect(fakeClient.get).toHaveBeenCalledWith("/weather", {
       params: expect.objectContaining({
@@ -73,6 +77,8 @@ describe("WeatherService", () => {
     const svc = new WeatherService(fakeClient as any, fakeGeo as any);
 
     const data = await svc.getCurrentWeather("London");
+
+    expect(fakeGeo.getLocationCoordinates).toHaveBeenCalledWith("London", undefined);
 
     expect(data).toBeTruthy();
     expect(data?.cityName).toBe("London");

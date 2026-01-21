@@ -48,9 +48,9 @@ export class WeatherService {
     return mapToWeatherData(raw);
   }
 
-  async getCurrentWeather(cityName: string): Promise<WeatherData | null> {
+  async getCurrentWeather(cityName: string, countryCode?: string): Promise<WeatherData | null> {
     const results =
-      await this.geoCodingService.getLocationCoordinates(cityName);
+      await this.geoCodingService.getLocationCoordinates(cityName,countryCode);
 
     if (!results || results.length === 0) {
       return emptyWeatherData(cityName);

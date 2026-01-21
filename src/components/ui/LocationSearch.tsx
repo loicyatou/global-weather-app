@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 type SearchBoxProps = {
   onSearch: (city: string) => void;
@@ -20,7 +20,7 @@ export default function LocationSearch({ onSearch }: SearchBoxProps) {
       <div className="flex items-center gap-2 border-b border-white/30 pb-2">
         <input
           value={value}
-          className="bg-transparent flex-1 outline-none placeholder-white/60"
+          className="h-full w-full bg-transparent flex-1 outline-none placeholder-white/60"
           placeholder="Search city worldwide"
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleOnSearch(value)}
