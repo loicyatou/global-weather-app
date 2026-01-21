@@ -1,90 +1,136 @@
 🌦️ bright.weather
-A clean, modern weather application built with React + TypeScript, focused on clarity, reliability, and good architectural boundaries.
+
+A clean, modern weather application built with React and TypeScript, focused on clarity, reliability, and strong architectural boundaries.
+
 This project was built as a technical exercise with an emphasis on:
-sensible separation of concerns
-predictable state flow
-readable UI
-minimal but meaningful testing
+- Sensible separation of concerns
+- Predictable state flow
+- Readable, maintainable UI
+- Minimal but meaningful testing
+
 ✨ Features
-Search weather by city name
-Automatic geolocation on first load (with graceful fallback)
-Dynamic full-screen background based on weather conditions
-Recent locations (last 4 searches, de-duplicated)
-Clear separation between UI, services, and API clients
-Lightweight test coverage for core logic
+
+- Search weather by city name
+- Automatic geolocation on first load (with graceful fallback)
+- Dynamic full-screen background based on weather conditions
+- Recent locations (last 4 searches, de-duplicated)
+- Clear separation between UI, services, and API clients
+- Lightweight test coverage for core logic
+
 🧱 Tech Stack
-React
-TypeScript
-Vite
-Tailwind CSS
-Axios
-Vitest (unit testing)
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Axios
+- Vitest (unit testing)
+
 🧭 Architecture Overview
-The app is structured to keep responsibilities clear:
-UI components
+
+The app is structured to keep responsibilities clear and isolated.
+
+UI Components  
 Focused purely on rendering and user interaction.
-Service layer
-Handles business logic (e.g. fetching and interpreting weather data).
-API client
+
+Service Layer  
+Handles business logic such as fetching and interpreting weather data.
+
+API Client  
 A thin wrapper around Axios that:
-applies base URLs
-injects default query parameters (e.g. API keys)
-normalises error handling
-Mappers / guards
+- Applies base URLs
+- Injects default query parameters (e.g. API keys)
+- Normalises error handling
+
+Mappers / Guards  
 Convert external API responses into stable, app-level domain models.
-This keeps the UI decoupled from external APIs and makes the core logic easy to test.
+
+This approach keeps the UI decoupled from external APIs and makes the core logic easy to test.
+
 🌍 Weather Data Source
+
 Weather data is provided by OpenWeather:
-Geocoding API (city → coordinates)
-Current Weather API
+- Geocoding API (city → coordinates)
+- Current Weather API
+
 Background images are mapped locally based on high-level weather conditions (e.g. clear, rain, snow) for reliability and performance.
+
 ⚙️ Environment Variables
+
 This project requires environment variables to run.
-Create a .env file in the project root (same level as package.json) with the following:
-VITE_OPEN_WEATHER_API_KEY=your_openweather_api_key_here
-VITE_OPEN_WEATHER_BASE_URL=https://api.openweathermap.org/data/2.5
-VITE_OPEN_GEOCODE_BASE_URL=https://api.openweathermap.org/geo/1.0
-VITE_OPEN_WEATHER_ICON_URL=https://openweathermap.org/img/wn/{iconKey}@2x.png
-Important notes
-All variables must start with VITE_ (Vite requirement)
-Do not wrap values in quotes
-Restart the dev server after adding or changing env vars
+
+Create a `.env` file in the project root (same level as `package.json`) with the following:
+
+VITE_OPEN_WEATHER_API_KEY=your_openweather_api_key_here  
+VITE_OPEN_WEATHER_BASE_URL=https://api.openweathermap.org/data/2.5  
+VITE_OPEN_GEOCODE_BASE_URL=https://api.openweathermap.org/geo/1.0  
+VITE_OPEN_WEATHER_ICON_URL=https://openweathermap.org/img/wn/{iconKey}@2x.png  
+
+Important notes:
+- All variables must start with `VITE_` (Vite requirement)
+- Do not wrap values in quotes
+- Restart the dev server after adding or changing environment variables
+
 ▶️ Running the App
+
 Install dependencies:
+
 npm install
-Start the dev server:
+
+Start the development server:
+
 npm run dev
+
 The app will be available at the local Vite URL (usually http://localhost:5173).
+
 🧪 Running Tests
+
 This project includes a small but focused test suite covering:
-the OpenWeather client
-the weather service logic
-key mapping utilities
+- The OpenWeather API client
+- Weather service logic
+- Key mapping utilities
+
 Run tests in watch mode:
+
 npm run test
+
 Run tests once:
+
 npm run test:run
+
 Run tests with coverage:
+
 npm run test:coverage
+
 🧠 Design Decisions
-Local background images instead of remote image APIs
+
+Local background images instead of remote image APIs  
 Ensures fast, predictable rendering with no additional failure modes.
-Service + client separation
+
+Service + client separation  
 Keeps HTTP concerns out of the UI and makes testing straightforward.
-Minimal UI testing
-Focused on business logic rather than snapshot/UI tests for this exercise.
-No over-engineering
+
+Minimal UI testing  
+Focuses on business logic rather than snapshot or UI tests for this exercise.
+
+No over-engineering  
 The implementation is intentionally simple and readable within the scope of a timed task.
+
 📌 Notes
-Recent locations are stored in memory (last 4 searches).
-This can easily be extended to localStorage if persistence is required.
-Error handling is intentionally user-friendly rather than verbose.
+
+- Recent locations are stored in memory (last 4 searches)
+- This can easily be extended to localStorage if persistence is required
+- Error handling is intentionally user-friendly rather than verbose
+
 ✅ Summary
-The goal of this project was not just to “make it work”, but to show:
-clean structure
-sensible defaults
-and an approach that would scale naturally in a real codebase
+
+The goal of this project was not just to “make it work”, but to demonstrate:
+- Clean structure
+- Sensible defaults
+- An approach that would scale naturally in a real-world codebase
+
 Thanks for taking the time to review it.
+
 
 # React + TypeScript + Vite Information
 
